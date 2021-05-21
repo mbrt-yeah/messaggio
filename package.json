@@ -1,0 +1,47 @@
+{
+  "name": "messaggio",
+  "version": "1.0.0",
+  "description": "A console logger that produces beautiful and readable messages.",
+  "main": "dist/index.js",
+  "scripts": {
+    "create-api-docs": "npm run create-api-docs-json && node ./scripts/create-api-docs.js",
+    "create-api-docs-typedoc": "npx typedoc",
+    "create-api-docs-json": "npx typedoc --json ./api-docs.json",
+    "build": "tsc",
+    "build-prerelease": "npm run build && npm version prerelease",
+    "build-major": "npm run build && npm version major",
+    "build-minor": "npm run build && npm version minor",
+    "build-patch": "npm run build && npm version patch",
+    "perf-test": "ts-node ./perf-tests/index.ts",
+    "publish-private": "npm publish --registry http://localhost:4873",
+    "publish-private-prerelease": "npm run build-prerelease && npm run publish-private",
+    "publish-private-major": "npm run build-major && npm run publish-private",
+    "publish-private-minor": "npm run build-minor && npm run publish-private",
+    "publish-private-patch": "npm run build-patch && npm run publish-private",
+    "test": "ts-node node_modules/jasmine/bin/jasmine --config=jasmine.json"
+  },
+  "author": "Matthias Einbrodt",
+  "license": "ISC",
+  "dependencies": {
+    "ansi-colors": "^4.1.1",
+    "await-to-js": "^2.1.1",
+    "figures": "^3.2.0",
+    "string-width": "^4.2.0",
+    "term-size": "^2.2.0"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^3.5.5",
+    "@types/node": "^13.13.0",
+    "jasmine": "^3.5.0",
+    "jasmine-diff": "^0.1.3",
+    "ts-node": "^8.6.2",
+    "typedoc": "^0.17.6",
+    "typescript": "^3.7.5"
+  },
+  "messaggioScripts": {
+    "createApiDocs": {
+      "inputPath": "./api-docs.json",
+      "outputPath": "../messaggio-docs/api"
+    }
+  }
+}
